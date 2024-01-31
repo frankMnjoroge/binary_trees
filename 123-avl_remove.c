@@ -15,18 +15,18 @@ void bal(avl_t **tree)
 		return;
 	bal(&(*tree)->left);
 	bal(&(*tree)->right);
-	bval = binary_tree_balance((const binary_tree_t *)*tree);
+	bval = bin_tr_balance((const binary_tree_t *)*tree);
 	if (bval > 1)
-		*tree = binary_tree_rotate_right((binary_tree_t *)*tree);
+		*tree = bin_tr_rotate_right((binary_tree_t *)*tree);
 	else if (bval < -1)
-		*tree = binary_tree_rotate_left((binary_tree_t *)*tree);
+		*tree = bin_tr_rotate_left((binary_tree_t *)*tree);
 }
 /**
- * successor - get the next successor i mean the min node in the right subtree
+ * success - get the next successor i mean the min node in the right subtree
  * @node: tree to check
  * Return: the min value of this tree
  */
-int successor(bst_t *node)
+int success(bst_t *node)
 {
 	int left = 0;
 
@@ -36,7 +36,7 @@ int successor(bst_t *node)
 	}
 	else
 	{
-		left = successor(node->left);
+		left = success(node->left);
 		if (left == 0)
 		{
 			return (node->n);
@@ -46,11 +46,11 @@ int successor(bst_t *node)
 
 }
 /**
- *remove_type - function that removes a node depending of its children
+ *rem_type - function that removes a node depending of its children
  *@root: node to remove
  *Return: 0 if it has no children or other value if it has
  */
-int remove_type(bst_t *root)
+int rem_type(bst_t *root)
 {
 	int new_value = 0;
 
@@ -86,32 +86,32 @@ int remove_type(bst_t *root)
 	}
 	else
 	{
-		new_value = successor(root->right);
+		new_value = success(root->right);
 		root->n = new_value;
 		return (new_value);
 	}
 }
 /**
- * bst_remove - remove a node from a BST tree
+ * bst_rem - remove a node from a BST tree
  * @root: root of the tree
  * @value: node with this value to remove
  * Return: the tree changed
  */
-bst_t *bst_remove(bst_t *root, int value)
+bst_t *bst_rem(bst_t *root, int value)
 {
 	int type = 0;
 
 	if (root == NULL)
 		return (NULL);
 	if (value < root->n)
-		bst_remove(root->left, value);
+		bst_rem(root->left, value);
 	else if (value > root->n)
-		bst_remove(root->right, value);
+		bst_rem(root->right, value);
 	else if (value == root->n)
 	{
-		type = remove_type(root);
+		type = rem_type(root);
 		if (type != 0)
-			bst_remove(root->right, type);
+			bst_rem(root->right, type);
 	}
 	else
 		return (NULL);
@@ -119,14 +119,14 @@ bst_t *bst_remove(bst_t *root, int value)
 }
 
 /**
- * avl_remove - remove a node from a AVL tree
+ * avl_rem - remove a node from a AVL tree
  * @root: root of the tree
  * @value: node with this value to remove
  * Return: the tree changed
  */
-avl_t *avl_remove(avl_t *root, int value)
+avl_t *avl_rem(avl_t *root, int value)
 {
-	avl_t *root_a = (avl_t *) bst_remove((bst_t *) root, value);
+	avl_t *root_a = (avl_t *) bst_rem((bst_t *) root, value);
 
 	if (root_a == NULL)
 		return (NULL);
