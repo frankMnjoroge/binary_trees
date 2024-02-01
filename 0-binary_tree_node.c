@@ -7,7 +7,7 @@
  * Return: a pointer to the new node, or NULL on failure
  */
 
-binary_tree_t *bin_tr_node(binary_tree_t *parent, int value)
+binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
 {
 	/* declaration of the new node with its data type */
 	binary_tree_t *newNode;
