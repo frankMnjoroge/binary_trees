@@ -16,13 +16,13 @@ avl_t *r_insert_node(avl_t **tree, avl_t *parent, avl_t **new, int nval)
 		return (*new = binary_tree_node(parent, nval));
 	if ((*tree)->n > nval)
 	{
-		(*tree)->left = r_inside_node(&(*tree)->left, *tree, new, nval);
+		(*tree)->left = r_insert_node(&(*tree)->left, *tree, new, nval);
 		if ((*tree)->left == NULL)
 			return (NULL);
 	}
 	else if ((*tree)->n < nval)
 	{
-		(*tree)->right = r_inside_node(&(*tree)->right, *tree, new, nval);
+		(*tree)->right = r_insert_node(&(*tree)->right, *tree, new, nval);
 		if ((*tree)->right == NULL)
 			return (NULL);
 	}
