@@ -8,8 +8,8 @@
  * Return: pointer to the ancestor node
  *         NULL if there is no ancestor node
  */
-binary_tree_t *binary_tree_ancestor(const binary_tree_t *first,
-				     const binary_tree_t *second)
+binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
+	       	const binary_tree_t *second)
 {
 	size_t depth_first, depth_second;
 
